@@ -1,11 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, Pressable } from 'react-native';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 export default function Menu() {
-    const [img, setimg] = useState(0);
+    const [filter, setFilter] = useState('All');
+    const [dataa, setdata] = useState([]);
     const nav = useNavigation();
     const route = useRoute();
     const data = [
@@ -27,7 +28,7 @@ export default function Menu() {
         id:2,
         name:'Pina Bike',
         price:1500,
-        type:'RoadBike',
+        type:'Roadbike',
         url:require('../assets/3.png')
       },
       {
@@ -52,20 +53,43 @@ export default function Menu() {
         url:require('../assets/6.png')
       },
   ]
+  useEffect(() => {
+    if (filter == 'Roadbike') {
+      var arr=[];
+      arr = data.filter((data) => {
+        return data.type == 'Roadbike'
+    })
+    setdata(arr);
+    console.log(arr);
+    }
+    if (filter == 'MountainBike') {
+      var arr=[];
+      arr = data.filter((data) => {
+        return data.type == 'MountainBike'
+    })
+    setdata(arr);
+    console.log(arr);  
+  }
+    if (filter == 'All') {
+      setdata(data);
+      console.log(data);
+    }
+  }, [filter])
+  
   return (
     <View>
         <Text style={{marginTop:47,marginBottom:45,marginLeft:15,width:255,height:29,textAlign: 'center', color: '#E94141', fontSize: 25, fontFamily: 'Ubuntu', fontWeight: '700', wordWrap: 'break-word'}}>
             The world’s Best Bike</Text>
-        <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-        <Pressable>
+        <View style={{marginBottom:37,flexDirection:'row',justifyContent:'space-around'}}>
+        <Pressable onPress={()=>setFilter('All')}>
             <Text style={{paddingTop:3,borderRadius:5,border: '1px rgba(233, 65, 65, 0.53) solid',width: 99, height: 32, background: 'white',textAlign: 'center', color: '#BEB6B6', fontSize: 20, fontFamily: 'Voltaire', fontWeight: '400', wordWrap: 'break-word'}}>
                 All</Text>
         </Pressable>
-        <Pressable>
+        <Pressable onPress={()=>setFilter('Roadbike')}>
             <Text style={{paddingTop:3,borderRadius:5,border: '1px rgba(233, 65, 65, 0.53) solid',width: 99, height: 32, background: 'white',textAlign: 'center', color: '#BEB6B6', fontSize: 20, fontFamily: 'Voltaire', fontWeight: '400', wordWrap: 'break-word'}}>
                 Roadbike</Text>
         </Pressable>
-        <Pressable>
+        <Pressable onPress={()=>setFilter('MountainBike')}>
             <Text style={{paddingTop:3,borderRadius:5,border: '1px rgba(233, 65, 65, 0.53) solid',width: 99, height: 32, background: 'white',textAlign: 'center', color: '#BEB6B6', fontSize: 20, fontFamily: 'Voltaire', fontWeight: '400', wordWrap: 'break-word'}}>
                 Mountain</Text>
         </Pressable>
@@ -75,11 +99,13 @@ export default function Menu() {
             <Pressable onPress={() => nav.navigate('Detail',
                 { img: item.url, name: item.name, price: item.price }
             )}>
-            <View style={{ marginTop: 5, marginLeft: 5, width: 167, height: 200, backgroundColor: 'rgba(247, 186, 131, 0.15)', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <View style={{ marginTop: 5, marginLeft: 5, width: 167, height: 200, backgroundColor: 'rgba(247, 186, 131, 0.15)'}}>
                 <Image source={require('../assets/heart.png')} style={{width:25,height:25}}/>
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Image style={{ width: 108, height: 124, resizeMode: 'contain' }} source={item.url} />
                 <Text>{item.name}</Text>
-                <Text><Text style={{ color: 'orange' }}>$</Text> {item.price}</Text>
+                <Text><Text style={{ color: 'orange' }}>$</Text>{item.price}</Text>
+                </View>
             </View>
           </Pressable>
         ))}

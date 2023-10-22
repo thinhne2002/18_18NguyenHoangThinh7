@@ -5,53 +5,7 @@ import { SafeAreaView } from 'react-native';
 import { Pressable, StyleSheet, Text, View, Image} from 'react-native';
 
 export default function Home() {
-    const [img, setimg] = useState(0);
     const nav = useNavigation();
-    const route = useRoute();
-    const data = [
-      {
-        id:0,
-        name:'Pinarello',
-        price:1800,
-        type:'MountainBike',
-        url:require('../assets/1.png')
-      },
-      {
-        id:1,
-        name:'Pina Mountai',
-        price:1700,
-        type:'MountainBike',
-        url:require('../assets/2.png')
-      },
-      {
-        id:2,
-        name:'Pina Bike',
-        price:1500,
-        type:'RoadBike',
-        url:require('../assets/3.png')
-      },
-      {
-        id:3,
-        name:'Pinarello',
-        price:1900,
-        type:'Roadbike',
-        url:require('../assets/4.png')
-      },
-      {
-        id:4,
-        name:'Pinarello',
-        price:2700,
-        type:'Roadbike',
-        url:require('../assets/5.png')
-      },
-      {
-        id:5,
-        name:'Pinarello',
-        price:1350,
-        type:'MountainBike',
-        url:require('../assets/6.png')
-      },
-  ]
 return (
     
     <View style={{alignItems:'center',justifyContent:'center'}}>
