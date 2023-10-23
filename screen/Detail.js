@@ -64,7 +64,7 @@ export default function Detail() {
         <Text style={{textAlign: 'center', color: 'rgba(0, 0, 0, 0.59)', fontSize: 25, fontFamily: 'Voltaire', fontWeight: '400', wordWrap: 'break-word'}}>15% OFF {route?.params?.price}:</Text>
         <Text style={{marginLeft:15,textAlign: 'center', color: 'black', fontSize: 25, fontFamily: 'Voltaire', fontWeight: '600', textDecoration: 'line-through', wordWrap: 'break-word',textDecorationLine:'line-through'}}>{route?.params?.price}</Text>
         <Text style={{marginLeft:15,textAlign: 'center', color: 'black', fontSize: 25, fontFamily: 'Voltaire', fontWeight: '600', wordWrap: 'break-word'}}>~</Text>
-        <Text style={{marginLeft:15,textAlign: 'center', color: 'black', fontSize: 25, fontFamily: 'Voltaire', fontWeight: '600', wordWrap: 'break-word'}}>{route?.params?.price}$</Text>
+        <Text style={{marginLeft:15,textAlign: 'center', color: 'black', fontSize: 25, fontFamily: 'Voltaire', fontWeight: '600', wordWrap: 'break-word'}}>{route?.params?.price*(0.85)} $</Text>
       </View>
       <Text style={{marginLeft:14,marginTop:25,width:117,height:31,textAlign: 'center', color: 'black', fontSize: 25, fontFamily: 'Voltaire', fontWeight: '400', wordWrap: 'break-word'}}>
         Description 
